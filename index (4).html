@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secret Friend Garden</title>
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      font-family: 'Comic Sans MS', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .character {
+      width: 120px;
+      margin: 10px;
+      animation: float 4s ease-in-out infinite;
+    }
+    .characters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 10px;
+    }
+    input, button {
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    .choices, .result {
+      margin-top: 20px;
+      display: none;
+      gap: 15px;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .choice-button {
+      background-color: #ffe6f2;
+      border: 2px solid #ff66cc;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(255, 182, 193, 0.5);
+    }
+    .choice-button:hover {
+      background-color: #ffccf2;
+      transform: scale(1.05);
+    }
+    .result p {
+      font-size: 1.2rem;
+      color: #333;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="characters">
+    <img class="character" src="https://static.wikia.nocookie.net/cookierunkingdom/images/b/b9/MoonlightCookie_icon.png" alt="Moonlight Cookie" />
+    <img class="character" src="https://static.wikia.nocookie.net/cookierunkingdom/images/4/4b/EspressoCookie_icon.png" alt="Espresso Cookie" />
+    <img class="character" src="https://static.wikia.nocookie.net/cookierunkingdom/images/c/c4/SorbetSharkCookie_icon.png" alt="Sorbet Shark" />
+    <img class="character" src="https://static.wikia.nocookie.net/cookierunkingdom/images/b/b5/HollyberryCookie_icon.png" alt="Hollyberry Cookie" />
+  </div>
+
+  <h2 id="greeting">𒉽𒆗𒉽𒆗𒉽𒆗 Halo! Siapa namamu? 🎀</h2>
+  <input type="text" id="nameInput" placeholder="Tulis namamu di sini" />
+  <button onclick="sayHello(this)">Kirim</button>
+
+  <div class="choices" id="choices">
+    <p id="welcomeText"></p>
+    <button class="choice-button" onclick="showResult('🍓 Kamu menemukan rahasia manis di dalam hatimu!')">🍓 Rahasia Kue Stroberi</button>
+    <button class="choice-button" onclick="showResult('🌙 Kamu melayang ke taman bintang bersama Moonlight Cookie!')">🌙 Taman Bintang</button>
+    <button class="choice-button" onclick="showResult('🐇 Kamu masuk dunia lucu penuh CRK yang ceria!')">🐇 Dunia CRK Lucu</button>
+  </div>
+
+  <div class="result" id="resultBox">
+    <p id="resultText"></p>
+    <p>𒉽𒆗 Terima kasih sudah bermain di Secret Garden~ 🎀</p>
+  </div>
+
+  <script>
+    function sayHello(button) {
+      const name = document.getElementById("nameInput").value;
+      if (name.trim() !== "") {
+        document.getElementById("greeting").style.display = "none";
+        document.getElementById("nameInput").style.display = "none";
+        button.style.display = "none";
+        document.getElementById("choices").style.display = "flex";
+        document.getElementById("welcomeText").innerText = `𒉽𒆗 Hai ${name}! Mari pilih 3 ini ✨ 𒉽𒆗`;
+      }
+    }
+
+    function showResult(message) {
+      document.getElementById("choices").style.display = "none";
+      document.getElementById("resultText").innerText = message;
+      document.getElementById("resultBox").style.display = "flex";
+    }
+  </script>
+</body>
+</html>
